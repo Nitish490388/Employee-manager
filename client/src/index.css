@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.quill>.ql-container>.ql-editor {
+  outline: none !important;
+}
+
+.quill>.ql-container>.ql-editor.ql-blank::before {
+  color: grey;
+}
+
+.quill {
+  border-radius: 0.25rem !important;
+}
+
+.ql-toolbar,
+.ql-container {
+  border: none !important;
+}
+
+.quill>.ql-toolbar span,
+.quill>.ql-toolbar svg,
+.quill>.ql-toolbar svg polygon,
+.quill>.ql-toolbar svg rect,
+.quill>.ql-toolbar svg circle,
+.quill>.ql-toolbar svg line,
+.quill>.ql-toolbar svg path,
+.quill>.ql-toolbar svg polyline {
+  transition-duration: 0.2s;
+  color: white !important;
+  stroke: white !important;
+}
+
+.ql-picker-options {
+  background-color: #343d49 !important;
+}
+
+.ql-selected,
+.ql-picker-item:hover,
+.ql-active {
+  background-color: #1f2937 !important;
+}
+
+pre {
+  background-color: black;
+  padding: 10px;
+  border-radius: 0.25rem;
+  width: fit-content;
+}
