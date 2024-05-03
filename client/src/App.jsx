@@ -1,9 +1,9 @@
-
+import AllRouter from "./AllRouter"
 function App() {
 
   return (
     <>
-      Hello
+      <AllRouter />
     </>
   )
 }
