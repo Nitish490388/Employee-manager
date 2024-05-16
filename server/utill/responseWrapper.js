@@ -8,7 +8,7 @@ const success = (statusCode, data) => {
 const error = (statusCode, msg) => {
   return {
     statusCode,
-    error
+    msg
   };
 };
 

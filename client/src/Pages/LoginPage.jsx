@@ -11,8 +11,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isPending, setIsPending] = useState(false);
 
-  const [successMsg, setSuccessMsg] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [successMsg, setSuccessMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ const Login = () => {
   });
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     setErrorMsg(null);
     setSuccessMsg(null);
     try {
@@ -30,6 +30,7 @@ const Login = () => {
         userName,
         password
       })
+      // console.log(error);
       if (error) setErrorMsg("Password must be greater than or equal to 8");
 
       setIsPending(true);
@@ -39,10 +40,14 @@ const Login = () => {
       });
       setIsPending(false);
       console.log(response.data);
-      if (response?.data?.message) setErrorMsg(response?.data?.message);
-      navigate("/dashboard");
+      if (response?.data?.msg) setErrorMsg(response?.data?.msg);
+
+      if (response.data.statusCode == 200) {
+        navigate("/dashboard-home");
+      }
     } catch (error) {
       console.log(error);
+      setIsPending(false);
     }
   };
 
@@ -64,7 +69,8 @@ const Login = () => {
               value={userName}
               onChange={(e) => {
                 setUserName(e.target.value
-                )
+                );
+                setErrorMsg("");
               }}
               required
             />
@@ -82,6 +88,7 @@ const Login = () => {
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
+                setErrorMsg("");
               }}
               required
             />

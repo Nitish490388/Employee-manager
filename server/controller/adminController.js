@@ -64,12 +64,12 @@ const login = async (req, res) => {
 
     const existingUser = await Admin.findOne({ userName });
     if (!existingUser) {
-      return res.status(200).send({ message: "Invalid login details" });
+      return res.send(error(400, "Invalid user details"));
     }
 
     const matched = await bcrypt.compare(password, existingUser.password);
     if (!matched) {
-      return res.send({ message: "Password did not match!" });
+      return res.send(error(400, "Password did not match!"));
     }
 
     const token = jwt.sign(
@@ -85,7 +85,7 @@ const login = async (req, res) => {
       expires: new Date(Date.now() + 1000 * 24 * 60 * 60 * 3),
     });
 
-    res.send(success(200, "Ok from login"));
+    return res.send(success(200, "User logged in successfully"));
   } catch (error) {
     console.log(error);
   }
@@ -93,7 +93,9 @@ const login = async (req, res) => {
 
 const logout = (req, res) => {
   try {
-    cookie.remove()
+    res.clearCookie("token");
+    req.session = null;
+    return res.send({ message: "User logged out successfully" });
   } catch (error) {
     console.log(error);
   }

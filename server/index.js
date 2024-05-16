@@ -6,6 +6,7 @@ import cors from "cors";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import cookieSession from "cookie-session";
+import dashboardRoute from "./routes/dashboardRouter.js";
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.get("/", (req, res) => {
   res.status(200).send("Ok from server");
 });
 app.use("/admin", adminRoute);
+app.use("/dashboard", dashboardRoute);
 
 const PORT = process.env.PORT || 8001;
 

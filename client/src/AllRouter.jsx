@@ -7,6 +7,9 @@ const Home = lazy(() => import("./Pages/HomePage"));
 const Login = lazy(() => import("./Pages/LoginPage"));
 const DashBoard = lazy(() => import("./Pages/Dashboard"));
 const RestrictUser = lazy(() => import("./Components/RestrictUser"));
+const DashboardHome = lazy(() => import("./Pages/DashboardHome"));
+const EmployeeList = lazy(() => import("./Pages/EmployeeList"));
+const CreateEmployee = lazy(() => import("./Pages/CreateEmployee"));
 
 function LazyLoader() {
   return (
@@ -25,7 +28,11 @@ const AllRouter = () => {
         <Route path="/signup" element={<Signup />} />
 
         <Route element={<RestrictUser />}>
-          <Route path="/dashboard" element={<DashBoard />} />
+          <Route element={<DashBoard />}>
+            <Route path="/dashboard-home" element={<DashboardHome />} />
+            <Route path="/employee-list" element={<EmployeeList />} />
+            <Route path="/createEmployee" element={<CreateEmployee />} />
+          </Route>
         </Route>
       </Routes>
     </Suspense>
